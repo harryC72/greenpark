@@ -1,58 +1,61 @@
 <script>
-import Container from './components/Container.vue';
-import ContentBox from './components/ContentBox.vue';
+import Container from "./components/Container.vue";
+import ContentBox from "./components/ContentBox.vue";
 import axios from "axios";
-import { isProxy, toRaw } from 'vue';
-
+import { isProxy, toRaw } from "vue";
 
 export default {
-	components: {
-		Container,
-		ContentBox
-	},
-	data(){
-		return {
-			products: []
-		}
-	},
-	created() {
-		console.log(import.meta.env.VITE_PRODUCT_API_DEFAULT);
+  components: {
+    Container,
+    ContentBox,
+  },
+  data() {
+    return {
+      products: [],
+    };
+  },
+  created() {
+    console.log(import.meta.env.VITE_PRODUCT_API_DEFAULT);
     axios
       .get(import.meta.env.VITE_PRODUCT_API_DEFAULT)
-      .then(response => {
+      .then((response) => {
         // this.products = response.data;
-								const rawObject = toRaw(response.data);
-								console.log("RAW", rawObject);
+        const rawObject = toRaw(response.data);
+        console.log("RAW", rawObject);
 
-								this.products = rawObject;
-
+        this.products = rawObject;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
-  }
-}
-
-
+  },
+};
 </script>
 
 <template>
-	<div class="widget-box">
-	<Container>
-		<h3>Per product widgets</h3>
-		<ContentBox	:products="products" />
-	</Container>
-</div>
+  <div class="widget-box">
+    <Container>
+      <h3>Per product widgets</h3>
+      <ContentBox :products="products" />
+    </Container>
+  </div>
 </template>
 
 <style scoped>
-.widget-box{
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 241px;
+.widget-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 241px;
 }
-/* @media (min-width: 1024px) {
-} */
+
+@media only screen and (max-width: 600px) {
+  h3 {
+    text-align: center;
+  }
+  .widget-box {
+    margin: 48px 0 67px;
+  }
+}
 </style>

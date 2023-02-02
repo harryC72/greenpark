@@ -32,4 +32,11 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
+@media only screen and (max-width: 600px) {
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 </style>

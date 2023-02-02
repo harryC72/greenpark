@@ -164,4 +164,10 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+@media only screen and (max-width: 600px) {
+  .text {
+    margin-bottom: 38px;
+  }
+}
 </style>

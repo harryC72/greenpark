@@ -13,6 +13,9 @@ export default {
     <span class="tooltip-content">
       <div>{{ text }}</div>
       <a
+        class="link"
+        target="_blank"
+        href="https://www.linkedin.com/in/harald-carlsten-10a3b715/"
         ><div class="action-call">{{ actionCall }}</div></a
       >
     </span>
@@ -34,11 +37,16 @@ export default {
   padding: 24px 16px;
   position: absolute;
   z-index: 100;
-  bottom: 125%;
+  bottom: 100%;
   left: 50%;
   margin-left: -100px;
   opacity: 0;
   transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
 }
 
 .action-call {
@@ -47,8 +55,7 @@ export default {
   color: var(--green);
 }
 
-.tooltip:hover .tooltip-content {
-  visibility: visible;
-  opacity: 1;
+.link {
+  text-decoration: none;
 }
 </style>
