@@ -1,0 +1,27 @@
+@import './base.css';
+
+/* #app {
+  max-width: 1280px;
+ 
+} */
+
+h3{
+	font-weight: 700;
+	size: 30px;
+	line-height: 36px;
+}
+
+.heading {
+  text-decoration: none;
+  color: #212121;
+		font-weight: 700;
+		size: 30px;
+		line-height: 36px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
