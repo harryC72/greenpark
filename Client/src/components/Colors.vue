@@ -1,9 +1,14 @@
 <script lang="ts">
 export default {
-  props: ["selectedColor"],
+  props: ["selectedColor", "changeSelectedColor", "id"],
 
   mounted() {
-    console.log("FROM COLORS", this.selectedColor);
+    console.log(
+      "FROM COLORS",
+      this.selectedColor,
+      this.changeSelectedColor,
+      this.id
+    );
   },
 };
 </script>
@@ -12,22 +17,32 @@ export default {
     <div
       class="color-box blue"
       :class="selectedColor === 'blue' && 'selected'"
+      :id="id"
+      @click="changeSelectedColor(id, 'blue')"
     ></div>
     <div
       class="color-box green"
       :class="selectedColor === 'green' && 'selected'"
+      :id="id"
+      @click="changeSelectedColor(id, 'green')"
     ></div>
     <div
       class="color-box beige"
       :class="selectedColor === 'beige' && 'selected'"
+      :id="id"
+      @click="changeSelectedColor(id, 'beige')"
     ></div>
     <div
       class="color-box white"
       :class="selectedColor === 'white' && 'selected'"
+      :id="id"
+      @click="changeSelectedColor(id, 'white')"
     ></div>
     <div
       class="color-box black"
       :class="selectedColor === 'black' && 'selected'"
+      :id="id"
+      @click="changeSelectedColor(id, 'black')"
     ></div>
   </div>
 </template>
@@ -38,6 +53,10 @@ export default {
 .color-box {
   width: 16px;
   height: 16px;
+}
+
+.color-box:hover {
+  opacity: 0.8;
 }
 .blue {
   background-color: var(--blue);

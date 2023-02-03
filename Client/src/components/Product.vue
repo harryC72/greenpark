@@ -16,6 +16,9 @@ export default {
     "linked",
     "selectedColor",
     "type",
+    "changeLinkedState",
+    "changeActiveState",
+    "changeSelectedColor",
   ],
 
   computed: {
@@ -55,16 +58,32 @@ export default {
             actionCall="View Public	Profile"
         /></span>
       </div>
-      <input type="checkbox" name="active" :checked="linked" />
+      <input
+        type="checkbox"
+        name="linked"
+        :id="id"
+        :checked="linked"
+        @change="changeLinkedState(id)"
+      />
     </div>
     <div>
       <div>Badge colour</div>
-      <Colors :selectedColor="selectedColor" />
+      <Colors
+        :selectedColor="selectedColor"
+        :changeSelectedColor="changeSelectedColor"
+        :id="id"
+      />
     </div>
     <div>
       <div>Activate badge</div>
       <label class="switch">
-        <input type="checkbox" name="active" :checked="active" />
+        <input
+          type="checkbox"
+          name="active"
+          :checked="active"
+          :id="id"
+          @change="changeActiveState(id)"
+        />
         <span class="slider round"></span>
       </label>
     </div>
@@ -99,8 +118,8 @@ input[type="checkbox"] {
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 20px;
+  width: 46px;
+  height: 23px;
 }
 
 .switch input {
@@ -130,39 +149,35 @@ input[type="checkbox"] {
 .slider:before {
   position: absolute;
   content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 1px;
-  top: 2px;
+  height: 23px;
+  width: 23px;
+  top: -0.8px;
   background: #f9f9f9;
   border: 0.58978px solid #f2ebdb;
-  box-shadow: 0px 0px 1.17956px rgba(0, 0, 0, 0.35);
-  border-radius: 29.489px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.35);
+  border-radius: 29px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .slider {
   background-color: var(--green);
+  left: 1px;
 }
 
 input:focus + .slider {
   box-shadow: 0 0 1px var(--white);
 }
 
+input:hover + .slider:before {
+  outline: 7px solid #afc6bd;
+  background: #f9f9f9;
+}
+
 input:checked + .slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
-}
-
-.slider.round {
-  border-radius: 29px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
 }
 
 @media only screen and (max-width: 600px) {

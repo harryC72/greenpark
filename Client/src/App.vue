@@ -14,6 +14,29 @@ export default {
       products: [],
     };
   },
+  methods: {
+    changeLinkedState(id) {
+      console.log("ID", id);
+      const product = this.products.find((product) => product.id === id);
+      console.log("PRODUCT", product);
+      product.linked = !product.linked;
+      console.log("PRODUCT", product);
+    },
+    changeActiveState(id) {
+      console.log("ID", id);
+      const product = this.products.find((product) => product.id === id);
+      console.log("PRODUCT", product);
+      product.active = !product.active;
+      console.log("PRODUCT", product);
+    },
+    changeSelectedColor(id, color) {
+      console.log("ID", id);
+      const product = this.products.find((product) => product.id === id);
+      console.log("PRODUCT", product);
+      product.selectedColor = color;
+      console.log("PRODUCT", product);
+    },
+  },
   created() {
     console.log(import.meta.env.VITE_PRODUCT_API_DEFAULT);
     axios
@@ -36,7 +59,12 @@ export default {
   <div class="widget-box">
     <Container>
       <h3>Per product widgets</h3>
-      <ContentBox :products="products" />
+      <ContentBox
+        :products="products"
+        :changeLinkedState="changeLinkedState"
+        :changeActiveState="changeActiveState"
+        :changeSelectedColor="changeSelectedColor"
+      />
     </Container>
   </div>
 </template>
