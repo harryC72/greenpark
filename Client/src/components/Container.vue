@@ -8,7 +8,7 @@
 .container {
   width: 851px;
   padding: 36px 36px 0;
-  background: #f9f9f9;
+  background: var(--white);
   box-shadow: 0px 42px 76px rgba(0, 0, 0, 0.05),
     0px 27.2222px 44.5093px rgba(0, 0, 0, 0.037963),
     0px 16.1778px 24.2074px rgba(0, 0, 0, 0.0303704),

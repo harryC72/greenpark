@@ -2,24 +2,25 @@
 import LogoGreenpark from "./icons/LogoGreenpark.vue";
 import Tooltip from "./Tooltip.vue";
 import Colors from "./Colors.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   components: {
     LogoGreenpark,
     Tooltip,
     Colors,
   },
-  props: [
-    "action",
-    "active",
-    "amount",
-    "id",
-    "linked",
-    "selectedColor",
-    "type",
-    "changeLinkedState",
-    "changeActiveState",
-    "changeSelectedColor",
-  ],
+  props: {
+    action: String,
+    active: Boolean,
+    amount: Number,
+    id: Number,
+    linked: Boolean,
+    selectedColor: String,
+    type: String,
+    changeLinkedState: Function,
+    changeActiveState: Function,
+    changeSelectedColor: Function,
+  },
 
   computed: {
     style() {
@@ -38,7 +39,7 @@ export default {
       this.type
     );
   },
-};
+});
 </script>
 <template>
   <div class="top-box" :style="style">
@@ -61,9 +62,8 @@ export default {
       <input
         type="checkbox"
         name="linked"
-        :id="id"
         :checked="linked"
-        @change="changeLinkedState(id)"
+        @change="changeLinkedState?.(id)"
       />
     </div>
     <div>
@@ -81,8 +81,7 @@ export default {
           type="checkbox"
           name="active"
           :checked="active"
-          :id="id"
-          @change="changeActiveState(id)"
+          @change="changeActiveState?.(id)"
         />
         <span class="slider round"></span>
       </label>

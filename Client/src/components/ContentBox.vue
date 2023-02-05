@@ -1,22 +1,29 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import type { PropType } from "vue";
 import Product from "./Product.vue";
 import Loader from "./Loader.vue";
-export default {
+import type { IProduct } from "../types/types";
+export default defineComponent({
   components: {
     Product,
     Loader,
   },
-  props: [
-    "products",
-    "changeLinkedState",
-    "changeActiveState",
-    "changeSelectedColor",
-  ],
+  props: {
+    products: {
+      type: Array as PropType<IProduct[]>,
+      required: true,
+    },
+    changeLinkedState: Function as PropType<(id: number) => void>,
+    changeActiveState: Function as PropType<(id: number) => void>,
+    changeSelectedColor: Function as PropType<
+      (id: number, color: string) => void
+    >,
+  },
   mounted() {
     console.log("FROM CONTENTBOX", this.products, this.changeSelectedColor);
   },
-};
+});
 </script>
 <template>
   <div class="product-container">

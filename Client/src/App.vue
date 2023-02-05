@@ -1,38 +1,49 @@
-<script>
+<script lang="ts">
 import Container from "./components/Container.vue";
 import ContentBox from "./components/ContentBox.vue";
 import axios from "axios";
-import { isProxy, toRaw } from "vue";
+import { toRaw, defineComponent } from "vue";
+import type { IProduct } from "./types/types";
 
-export default {
+export default defineComponent({
   components: {
     Container,
     ContentBox,
   },
   data() {
     return {
-      products: [],
+      products: [] as IProduct[],
     };
   },
   methods: {
-    changeLinkedState(id) {
+    changeLinkedState(id: number) {
       console.log("ID", id);
-      const product = this.products.find((product) => product.id === id);
+      const product = this.products.find(
+        (product: IProduct) => product.id === id
+      );
+
+      if (!product) {
+        console.error("Product not found");
+        return;
+      }
       console.log("PRODUCT", product);
       product.linked = !product.linked;
-      console.log("PRODUCT", product);
     },
-    changeActiveState(id) {
+    changeActiveState(id: number) {
       console.log("ID", id);
       const product = this.products.find((product) => product.id === id);
       console.log("PRODUCT", product);
-      product.active = !product.active;
+      if (product != undefined) product["active"] = !product["active"];
       console.log("PRODUCT", product);
     },
-    changeSelectedColor(id, color) {
+    changeSelectedColor(id: number, color: string) {
       console.log("ID", id);
       const product = this.products.find((product) => product.id === id);
-      console.log("PRODUCT", product);
+
+      if (!product) {
+        console.error("Product not found");
+        return;
+      }
       product.selectedColor = color;
       console.log("PRODUCT", product);
     },
@@ -40,19 +51,16 @@ export default {
   created() {
     console.log(import.meta.env.VITE_PRODUCT_API_DEFAULT);
     axios
-      .get(import.meta.env.VITE_PRODUCT_API_DEFAULT)
+      .get(import.meta.env.VITE_PRODUCT_API_DEFAULT as string)
       .then((response) => {
-        // this.products = response.data;
         const rawObject = toRaw(response.data);
-        console.log("RAW", rawObject);
-
         this.products = rawObject;
       })
       .catch((error) => {
         console.error(error);
       });
   },
-};
+});
 </script>
 
 <template>

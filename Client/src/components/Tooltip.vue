@@ -1,11 +1,12 @@
 <script lang="ts">
+import { defineComponent } from "vue";
 import TooltipIcon from "./icons/TooltipIcon.vue";
-export default {
+export default defineComponent({
   components: {
     TooltipIcon,
   },
-  props: ["text", "actionCall"],
-};
+  props: { text: String, actionCall: String },
+});
 </script>
 <template>
   <div class="tooltip">

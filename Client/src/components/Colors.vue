@@ -1,6 +1,11 @@
 <script lang="ts">
-export default {
-  props: ["selectedColor", "changeSelectedColor", "id"],
+import { defineComponent } from "vue";
+export default defineComponent({
+  props: {
+    selectedColor: String,
+    changeSelectedColor: Function,
+    id: Number,
+  },
 
   mounted() {
     console.log(
@@ -10,39 +15,34 @@ export default {
       this.id
     );
   },
-};
+});
 </script>
 <template>
   <div class="color-container">
     <div
       class="color-box blue"
       :class="selectedColor === 'blue' && 'selected'"
-      :id="id"
-      @click="changeSelectedColor(id, 'blue')"
+      @click="changeSelectedColor?.(id, 'blue')"
     ></div>
     <div
       class="color-box green"
       :class="selectedColor === 'green' && 'selected'"
-      :id="id"
-      @click="changeSelectedColor(id, 'green')"
+      @click="changeSelectedColor?.(id, 'green')"
     ></div>
     <div
       class="color-box beige"
       :class="selectedColor === 'beige' && 'selected'"
-      :id="id"
-      @click="changeSelectedColor(id, 'beige')"
+      @click="changeSelectedColor?.(id, 'beige')"
     ></div>
     <div
       class="color-box white"
       :class="selectedColor === 'white' && 'selected'"
-      :id="id"
-      @click="changeSelectedColor(id, 'white')"
+      @click="changeSelectedColor?.(id, 'white')"
     ></div>
     <div
       class="color-box black"
       :class="selectedColor === 'black' && 'selected'"
-      :id="id"
-      @click="changeSelectedColor(id, 'black')"
+      @click="changeSelectedColor?.(id, 'black')"
     ></div>
   </div>
 </template>
