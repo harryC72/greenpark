@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const cors = require("cors");
 const bodyParser = require("body-parser");
 
 let products = [
@@ -33,6 +34,8 @@ let products = [
 	},
 ];
 
+app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
@@ -42,11 +45,17 @@ app.get("/products", (req, res) => {
 	res.send(products);
 });
 
-app.patch("/products/:id", (req, res) => {
-	const id = req.params.id;
+app.post("/products", (req, res) => {
+	const id = req.query && req.query.id && +req.query.id;
 	const updatedProduct = req.body;
 
-	let productToUpdate = products.find((p) => p.id == parseInt(id));
+	console.log(req.body);
+	let productToUpdate;
+
+	if (id) {
+		productToUpdate = products.find((p) => p.id == id);
+	}
+	console.log("UPDATED	PRODUCT", productToUpdate);
 	if (!productToUpdate) {
 		res.status(404).send(`Product with id ${id} not found.`);
 		return;
@@ -56,7 +65,7 @@ app.patch("/products/:id", (req, res) => {
 	productToUpdate.linked = updatedProduct.linked;
 	productToUpdate.selectedColor = updatedProduct.selectedColor;
 
-	const productRest = products.filter((p) => p.id != parseInt(id));
+	const productRest = products.filter((p) => p.id != id);
 	products = [...productRest, productToUpdate];
 
 	res.send(`Product with id ${id} has been updated.`);

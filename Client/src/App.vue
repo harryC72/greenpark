@@ -28,6 +28,13 @@ export default defineComponent({
       }
       console.log("PRODUCT", product);
       product.linked = !product.linked;
+      axios
+        .post(import.meta.env.VITE_PRODUCT_API_DEFAULT as string, product, {
+          params: { id: id },
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
     changeActiveState(id: number) {
       console.log("ID", id);
@@ -35,6 +42,13 @@ export default defineComponent({
       console.log("PRODUCT", product);
       if (product != undefined) product["active"] = !product["active"];
       console.log("PRODUCT", product);
+      axios
+        .post(import.meta.env.VITE_PRODUCT_API_DEFAULT as string, product, {
+          params: { id: id },
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
     changeSelectedColor(id: number, color: string) {
       console.log("ID", id);
@@ -46,6 +60,13 @@ export default defineComponent({
       }
       product.selectedColor = color;
       console.log("PRODUCT", product);
+      axios
+        .post(import.meta.env.VITE_PRODUCT_API_DEFAULT as string, product, {
+          params: { id: id },
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
   },
   created() {

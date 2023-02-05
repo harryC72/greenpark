@@ -248,7 +248,7 @@
     "server": "npm start --prefix ./Server",
     "client": "cd ./Client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test --prefix ./Server"
   },
   "repository": {
     "type": "git",
