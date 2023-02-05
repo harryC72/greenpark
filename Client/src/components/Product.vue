@@ -59,12 +59,15 @@ export default defineComponent({
             actionCall="View Public	Profile"
         /></span>
       </div>
-      <input
-        type="checkbox"
-        name="linked"
-        :checked="linked"
-        @change="changeLinkedState?.(id)"
-      />
+      <label for="linked" class="hover-ring-container">
+        <input
+          type="checkbox"
+          name="linked"
+          :checked="linked"
+          @change="changeLinkedState?.(id)"
+        />
+        <b class="hover-ring"></b>
+      </label>
     </div>
     <div>
       <div>Badge colour</div>
@@ -91,7 +94,15 @@ export default defineComponent({
 <style scoped>
 input[type="checkbox"] {
   accent-color: var(--green);
+  width: 18px;
+  height: 18px;
 }
+
+input[type="checkbox"]:hover {
+  opacity: 0.5;
+  z-index: 100;
+}
+
 .top-box {
   margin-top: 20px;
   width: 221px;
@@ -112,6 +123,37 @@ input[type="checkbox"] {
 .text div {
   display: flex;
   justify-content: space-between;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--green);
+  width: 18px;
+  height: 18px;
+}
+
+.hover-ring-container {
+  position: relative;
+}
+
+.hover-ring {
+  display: none;
+  position: absolute;
+}
+
+.hover-ring-container:hover .hover-ring {
+  top: -4px;
+  left: -4px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  background: var(--light-green);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+input[type="checkbox"]:checked.hover-ring {
+  display: none;
+  position: absolute;
 }
 
 .switch {
@@ -136,9 +178,9 @@ input[type="checkbox"] {
   bottom: 0;
   background-color: var(--white);
 
-  background: #f9f9f9;
-  border: 0.58978px solid #f2ebdb;
-  box-shadow: 0px 0px 1.17956px rgba(0, 0, 0, 0.35);
+  background: var(--white);
+  border: 0.58978px solid var(--light-green);
+  box-shadow: 0px 0.88px 5.9px rgba(0, 0, 0, 0.15);
   border-radius: 29.489px;
 
   -webkit-transition: 0.4s;
@@ -169,7 +211,7 @@ input:focus + .slider {
 }
 
 input:hover + .slider:before {
-  outline: 7px solid #afc6bd;
+  outline: 7px solid var(--light-green);
   background: #f9f9f9;
 }
 
