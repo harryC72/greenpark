@@ -13,6 +13,7 @@ export default defineComponent({
   data() {
     return {
       products: [] as IProduct[],
+      error: "---",
     };
   },
   methods: {
@@ -78,6 +79,7 @@ export default defineComponent({
         this.products = rawObject;
       })
       .catch((error) => {
+        this.error = "Something went wrong";
         console.error(error);
       });
   },
@@ -89,6 +91,7 @@ export default defineComponent({
     <Container>
       <h3>Per product widgets</h3>
       <ContentBox
+        :error="error"
         :products="products"
         :changeLinkedState="changeLinkedState"
         :changeActiveState="changeActiveState"

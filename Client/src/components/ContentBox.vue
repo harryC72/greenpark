@@ -10,6 +10,7 @@ export default defineComponent({
     Loader,
   },
   props: {
+    error: String as PropType<string>,
     products: {
       type: Array as PropType<IProduct[]>,
       required: true,
@@ -27,7 +28,12 @@ export default defineComponent({
 </script>
 <template>
   <div class="product-container">
-    <div v-if="products.length === 0" class="loader-container"><Loader /></div>
+    <div v-if="error && error.length > 3" class="loader-container">
+      {{ error }}
+    </div>
+    <div v-if="products.length === 0 && !error" class="loader-container">
+      <Loader />
+    </div>
     <div v-for="product in products" :key="product.id">
       <Product
         :changeLinkedState="changeLinkedState"
