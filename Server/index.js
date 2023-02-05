@@ -56,9 +56,12 @@ app.patch("/products/:id", (req, res) => {
 	productToUpdate.linked = updatedProduct.linked;
 	productToUpdate.selectedColor = updatedProduct.selectedColor;
 
+	const productRest = products.filter((p) => p.id != parseInt(id));
+	products = [...productRest, productToUpdate];
+
 	res.send(`Product with id ${id} has been updated.`);
 });
 
-app.listen(port, () => {
+module.exports = app.listen(port, () => {
 	console.log(`Server listening at http://localhost:${port}`);
 });
