@@ -15,7 +15,11 @@ array of products which are displayed in the Vue-application. The Vue-app is fou
 You run the application by writing "npm run dev" in the console on the applications root level. 
 There are tests for the backend which you run by writing "npm run test" in the console on the root level. 
 
-Notes from the creator: 
+Notes from the creator:
+
+I only set up a small express server. The products are saved in memory. The next step is to connect the server with a database to store the products. I am handling error on the get request to the serfer. Errors on the post request are only logged. That is something to discuss how to handle. Maybe with a message box telling the user that the server is overloaded or something on those lines. 
+
+
 
 
 
