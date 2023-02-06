@@ -110,6 +110,13 @@ export default defineComponent({
   margin-top: 241px;
 }
 
+h3 {
+  padding-bottom: 12px;
+  font-size: 30px;
+  line-height: 36px;
+  color: var(--black);
+}
+
 @media only screen and (max-width: 600px) {
   h3 {
     text-align: center;

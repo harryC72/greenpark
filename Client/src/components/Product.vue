@@ -24,7 +24,23 @@ export default defineComponent({
 
   computed: {
     style() {
-      return `background-color: var(--${this.selectedColor})`;
+      const colorCondition =
+        this.selectedColor === "white" || this.selectedColor === "beige";
+
+      return `background-color: var(--${this.selectedColor});
+						color: ${colorCondition ? "var(--green)" : "var(--white)"};
+						box-shadow: ${
+              this.selectedColor === "white" &&
+              "0px 42px 76px rgba(0, 0, 0, 0.05), 0px 27.2222px 44.5093px rgba(0, 0, 0, 0.037963), 0px 16.1778px 24.2074px rgba(0, 0, 0, 0.0303704), 0px 8.4px 12.35px rgba(0, 0, 0, 0.025), 0px 3.42222px 6.19259px rgba(0, 0, 0, 0.0196296), 0px 0.777778px 2.99074px rgba(0, 0, 0, 0.012037);"
+            }
+						`;
+    },
+    logoColor() {
+      if (this.selectedColor === "white" || this.selectedColor === "beige") {
+        return "var(--green)";
+      } else {
+        return "var(--white)";
+      }
     },
   },
   mounted() {
@@ -43,7 +59,7 @@ export default defineComponent({
 </script>
 <template>
   <div class="top-box" :style="style">
-    <div><LogoGreenpark /></div>
+    <div><LogoGreenpark :fill="logoColor" /></div>
     <div class="top-text-box">
       <div>This product {{ action }}</div>
       <div>{{ amount }} {{ type }}</div>
@@ -52,7 +68,8 @@ export default defineComponent({
   <div class="text">
     <div>
       <div>
-        Link to Public Profile<span
+        <p>Link to Public Profile</p>
+        <span
           ><Tooltip
             class="tooltip"
             text="This widget links directly to your public profile so that you can easily share your impact with your customers. Turn it off here if you do not want the badge to link to it."
@@ -70,7 +87,7 @@ export default defineComponent({
       </label>
     </div>
     <div>
-      <div>Badge colour</div>
+      <p>Badge colour</p>
       <Colors
         :selectedColor="selectedColor"
         :changeSelectedColor="changeSelectedColor"
@@ -78,7 +95,7 @@ export default defineComponent({
       />
     </div>
     <div>
-      <div>Activate badge</div>
+      <p>Activate badge</p>
       <label class="switch">
         <input
           type="checkbox"
@@ -104,7 +121,7 @@ input[type="checkbox"]:hover {
 }
 
 .top-box {
-  margin-top: 20px;
+  margin: 20px 0 6px;
   width: 221px;
   padding: 10px 16px;
   border-radius: 6px;
@@ -123,6 +140,13 @@ input[type="checkbox"]:hover {
 .text div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.text p {
+  font-size: 14px;
+  line-height: 17px;
+  padding: 6px 0;
 }
 
 input[type="checkbox"] {
@@ -141,11 +165,11 @@ input[type="checkbox"] {
 }
 
 .hover-ring-container:hover .hover-ring {
-  top: -4px;
-  left: -4px;
+  top: -7px;
+  left: -7px;
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   background: var(--light-green);
   border-radius: 50%;
   opacity: 0.5;
