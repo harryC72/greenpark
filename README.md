@@ -17,6 +17,8 @@ There are tests for the backend which you run by writing "npm run test" in the c
 
 Notes from the creator:
 
+When it comes to the white product color (selectedColor) i made the decision to add a shadow to it. Otherwise it looked very strange.
+
 I only set up a small express server. The products are saved in memory. The next step is to connect the server with a database to store the products. I am handling error on the get request to the server. Errors on the post request are only logged. That is something to discuss how to handle. Maybe with a message box telling the user that the server is overloaded or something on those lines. 
 
 
