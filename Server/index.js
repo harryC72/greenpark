@@ -49,13 +49,11 @@ app.post("/products", (req, res) => {
 	const id = req.query && req.query.id && +req.query.id;
 	const updatedProduct = req.body;
 
-	console.log(req.body);
 	let productToUpdate;
 
 	if (id) {
 		productToUpdate = products.find((p) => p.id == id);
 	}
-	console.log("UPDATED	PRODUCT", productToUpdate);
 	if (!productToUpdate) {
 		res.status(404).send(`Product with id ${id} not found.`);
 		return;

@@ -18,7 +18,6 @@ export default defineComponent({
   },
   methods: {
     changeLinkedState(id: number) {
-      console.log("ID", id);
       const product = this.products.find(
         (product: IProduct) => product.id === id
       );
@@ -27,7 +26,6 @@ export default defineComponent({
         console.error("Product not found");
         return;
       }
-      console.log("PRODUCT", product);
       product.linked = !product.linked;
       axios
         .post(import.meta.env.VITE_PRODUCT_API_DEFAULT as string, product, {
@@ -38,11 +36,8 @@ export default defineComponent({
         });
     },
     changeActiveState(id: number) {
-      console.log("ID", id);
       const product = this.products.find((product) => product.id === id);
-      console.log("PRODUCT", product);
       if (product != undefined) product["active"] = !product["active"];
-      console.log("PRODUCT", product);
       axios
         .post(import.meta.env.VITE_PRODUCT_API_DEFAULT as string, product, {
           params: { id: id },
@@ -52,7 +47,6 @@ export default defineComponent({
         });
     },
     changeSelectedColor(id: number, color: string) {
-      console.log("ID", id);
       const product = this.products.find((product) => product.id === id);
 
       if (!product) {
@@ -60,7 +54,6 @@ export default defineComponent({
         return;
       }
       product.selectedColor = color;
-      console.log("PRODUCT", product);
       axios
         .post(import.meta.env.VITE_PRODUCT_API_DEFAULT as string, product, {
           params: { id: id },
@@ -71,7 +64,6 @@ export default defineComponent({
     },
   },
   created() {
-    console.log(import.meta.env.VITE_PRODUCT_API_DEFAULT);
     axios
       .get(import.meta.env.VITE_PRODUCT_API_DEFAULT as string)
       .then((response) => {
